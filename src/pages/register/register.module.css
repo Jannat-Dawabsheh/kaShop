@@ -1,0 +1,39 @@
+.row{
+    display:flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 24px;
+}
+
+.registerForm{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 10px;
+    
+}
+
+.rightSide{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+
+}
+
+
+.rightSide span{
+    color: #8d8d8d;
+
+}
+
+.textfeild{
+    width: 100%;
+}
+
+.formButton{
+   width: 100%;
+}
