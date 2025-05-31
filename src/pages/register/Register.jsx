@@ -31,7 +31,9 @@ export default function Register() {
   return (
     <>
     <div  className={`${style.row}`}>
+    <div className={`${style.leftSide}`}>
     <img src={registerimg}/>
+    </div>
     <div className={`${style.rightSide}`} >
       <div>
       <h2>Create New Account</h2>

@@ -19,7 +19,9 @@ export default function Login() {
   return (
     <>
     <div  className={`${style.row}`}>
+    <div className={`${style.leftSide}`}>
     <img src={loginimg}/>
+    </div>
     <div className={`${style.rightSide}`} >
 
       <h2>Login</h2>

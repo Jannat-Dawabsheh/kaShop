@@ -35,7 +35,9 @@ export default function ForgetStep2() {
   return (
     <>
     <div  className={`${style.row}`}>
+      <div className={`${style.leftSide}`}>
     <img src={registerimg}/>
+    </div>
     <div className={`${style.rightSide}`} >
       <div>
       <h2>Step2</h2>
