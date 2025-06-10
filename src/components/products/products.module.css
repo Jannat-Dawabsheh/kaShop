@@ -1,0 +1,25 @@
+.produtSection{
+    margin-top: 50px;
+}
+
+.productDiv{
+    width: 312px;
+    height: 404px;
+    display: flex;
+    justify-content: flex-start;
+    align-items:  flex-start;
+    flex-direction: column;
+}
+
+.price{
+  font-weight:bold;
+}
+
+.description{
+    color: grey;
+}
+
+.productImg{
+    height: 200px;
+    object-fit: fill;
+}

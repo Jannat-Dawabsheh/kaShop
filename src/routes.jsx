@@ -9,7 +9,7 @@ import Shop from "./pages/shop/Shop";
 import ForgetStep1 from "./pages/forgetPassword/ForgetStep1";
 import ForgetStep2 from "./pages/forgetPassword/ForgetStep2";
 import ForgetStep3 from "./pages/forgetPassword/ForgetStep3";
-
+import Product from "./pages/product/Product";
 const routes=createBrowserRouter([
     {
         path:'/',
@@ -47,6 +47,10 @@ const routes=createBrowserRouter([
             {
                 path:'/forgetStep3',
                 element:<ForgetStep3/>
+            },
+            {
+                path:'/product/:id',
+                element:<Product/>
             },
         ]
 

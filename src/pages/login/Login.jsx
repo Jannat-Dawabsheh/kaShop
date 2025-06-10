@@ -13,6 +13,7 @@ export default function Login() {
       const response= await axios.post(`http://mytshop.runasp.net/api/Account/Login`,values);
       console.log(response);
       if(response.status==200){
+       localStorage.setItem("userToken",response.data.token)
        navigate('/');
       }
   }

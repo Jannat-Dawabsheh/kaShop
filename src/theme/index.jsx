@@ -7,6 +7,11 @@ const theme=createTheme({
       main: '#4fc4ca',
       contrastText: '#312d5f',
     },
+
+    darkColor: {
+      main: '#312d5f',
+      contrastText: '#312d5f',
+    },
   },
 })
 

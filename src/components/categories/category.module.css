@@ -1,0 +1,15 @@
+.categorySection{
+    margin-top: 50px;
+}
+
+.categoryDiv{
+    width: 200px;
+    height: 200px;
+    border-radius: 200px;
+    background-color: #e6e3ff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+}
