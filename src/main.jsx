@@ -6,7 +6,7 @@ import { ThemeProvider } from '@emotion/react';
 import theme from './theme/index.jsx';
 import './index.css'
 import {  ToastContainer } from 'react-toastify';
-import ModeContextProvider from './context/modeContext.jsx';
+import ModeContextProvider from './context/ModeContext.jsx';
 
 createRoot(document.getElementById('root')).render(
   <ModeContextProvider>
