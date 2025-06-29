@@ -6,6 +6,7 @@ import { Link, useNavigate } from 'react-router';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { ToastContainer,Bounce, Slide, toast } from 'react-toastify';
+import AxiosValues from '../../api/AxiosValues';
 
 export default function ForgetStep1() {
  const {register,handleSubmit}=useForm();
@@ -13,7 +14,7 @@ export default function ForgetStep1() {
   const sendCode= async (values)=>{
 
     console.log(values)
-       const response= await axios.post(`http://mytshop.runasp.net/api/Account/ForgotPassword`,values);
+      const response= await AxiosValues.post(`Account/ForgotPassword`,values);
       if(response.status==200){
 
    toast.info('Please checkout your email', {

@@ -2,26 +2,36 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import style from '../categories/category.module.css'
 import { Button, Card, CardActions, CardContent, Grid, Typography } from "@mui/material";
+import useFetch from "../../hooks/useFetch";
+import Loader from "../../shared/Loader";
+import ErrorPage from "../../pages/errorPage/ErrorPage";
+import AxiosNotAuth from "../../api/AxiosNotAuth";
+import { useQuery } from "@tanstack/react-query";
 export default function Category(){
 
-    const [categories,setCategories]=useState([]);
-    const getCategories= async()=>{
-        const response= await axios.get('http://mytshop.runasp.net/api/categories');
-        console.log(response.data); 
-        setCategories(response.data); 
-         
+    // const {error,loader,data:categories}=useFetch('categories');
+    // if(loader)return <Loader/>
+    // if(error)return <ErrorPage/>
+
+    const fetchCategories=async()=>{
+        const {data}= await AxiosNotAuth.get(`categories`);
+        return data;
     }
 
+    const {data,isLoading,isError,error}=useQuery({
+      queryKey:['categories'],
+      queryFn:fetchCategories,
+      staleTime:1*60*60*1000,
+      retry:3
+    });
 
-    useEffect(()=>{
-        getCategories();
-       
-    },[])
+    if(isError)return <ErrorPage/>
+    if(isLoading)return <Loader/>
     
     return ( 
     <Grid sx={{m:5}} container spacing={4} className={`${style.categorySection}`}>
     {
-    categories.map((category) =>
+    data.map((category) =>
         <Grid item size={{ xs: 12, sm:4, md: 3 , lg:2, xl:2}} >
         <div key={category.id} className={`${style.categoryDiv}`}>
             <Typography component={'div'} variant="h6">

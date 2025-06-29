@@ -5,11 +5,13 @@ import App from './App.jsx'
 import { ThemeProvider } from '@emotion/react';
 import theme from './theme/index.jsx';
 import './index.css'
-
+import {  ToastContainer } from 'react-toastify';
+import ModeContextProvider from './context/modeContext.jsx';
 
 createRoot(document.getElementById('root')).render(
-  <ThemeProvider theme={theme}>
-    <CssBaseline />
+  <ModeContextProvider>
+
     <App />
-  </ThemeProvider>,
+    <ToastContainer/>
+  </ModeContextProvider>
 )

@@ -6,6 +6,7 @@ import { Link, useNavigate } from 'react-router';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { ToastContainer,Bounce, Slide, toast } from 'react-toastify';
+import AxiosValues from '../../api/AxiosValues';
 
 export default function ForgetStep3() {
  const {register,handleSubmit}=useForm();
@@ -30,7 +31,8 @@ export default function ForgetStep3() {
     setPassword.ConfirmPassword=values.confirmPassword;
     console.log(setPassword);
 
-       const response= await axios.patch(`http://mytshop.runasp.net/api/Account/SendCode`,setPassword);
+      //  const response= await axios.patch(`${import.meta.env.VITE_BURL}Account/SendCode`,setPassword);
+       const response= await AxiosValues.patch(`Account/SendCode`,setPassword);
       if(response.status==200){
 
    toast.success('Your password changed successfully', {

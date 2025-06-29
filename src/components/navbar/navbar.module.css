@@ -1,0 +1,15 @@
+.logoImg{
+     display: flex 
+}
+
+.logoImgsmall{
+   display: none  
+}
+@media only screen and (max-width: 900px) {
+ .logoImg{
+     display: none 
+}
+.logoImgsmall{
+   display: flex  
+}
+}

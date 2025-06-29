@@ -10,6 +10,8 @@ import ForgetStep1 from "./pages/forgetPassword/ForgetStep1";
 import ForgetStep2 from "./pages/forgetPassword/ForgetStep2";
 import ForgetStep3 from "./pages/forgetPassword/ForgetStep3";
 import Product from "./pages/product/Product";
+import Checkout from "./pages/checkout/Checkout";
+import ProtectedRouter from "./components/protectedRouter/ProtectedRouter";
 const routes=createBrowserRouter([
     {
         path:'/',
@@ -17,7 +19,7 @@ const routes=createBrowserRouter([
         errorElement:<ErrorPage/>,
         children:[
             {
-                path:'/',
+                index:true,
                 element:<Home/>
             },
             {
@@ -26,7 +28,7 @@ const routes=createBrowserRouter([
             },
             {
                 path:'/cart',
-                element:<Cart/>
+                element:<ProtectedRouter><Cart/></ProtectedRouter>
             },
             {
                 path:'/login',
@@ -51,6 +53,10 @@ const routes=createBrowserRouter([
             {
                 path:'/product/:id',
                 element:<Product/>
+            },
+            {
+                path:'/checkout',
+                element:<ProtectedRouter><Checkout/></ProtectedRouter>
             },
         ]
 

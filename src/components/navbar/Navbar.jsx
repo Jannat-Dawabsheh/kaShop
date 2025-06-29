@@ -12,16 +12,38 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import kaLogo from '../../assets/darkLogo.png';
-
-const pages = ['Register', 'Login','Cart'];
+import { CartContext } from '../../context/CartContext';
+import { ModeContext } from '../../context/modeContext';
+import { DarkMode, LightMode, Style } from '@mui/icons-material';
+import AxiosAuth from '../../api/AxiosAuth';
+import { QueryClient, useQuery, useQueryClient } from '@tanstack/react-query';
+import style from '../navbar/navbar.module.css'
+const pagesGuest = ['Register', 'Login'];
+const pagesAuth = ['Cart'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function Navbar() {
+  // const {cartItems}=React.useContext(CartContext);
+  const queryClient= useQueryClient();
+  const fetchCartItems=async()=>{
+    const {data}=await AxiosAuth.get('Carts');
+    return data;
+  }
+
+  useQuery({
+    queryKey:['cartItems'],
+    queryFn:fetchCartItems,
+    staleTime:5000,
+  })
+  const data=queryClient.getQueryData(['cartItems']);
+  const cartItems=data?.cartResponse.length;
+  const {mode,toggleTheme}=React.useContext(ModeContext);
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-
+  const isLogedin=Boolean(localStorage.getItem("userToken"));
+  const navigate=useNavigate();
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -36,12 +58,17 @@ function Navbar() {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+  const handleLogout=()=>{
+    localStorage.removeItem("userToken");
+    navigate('/login');
+  }
 
   return (
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+          {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
+          <img className={style.logoImg} src={kaLogo}></img>
           <Typography
             variant="h6"
             noWrap
@@ -88,14 +115,15 @@ function Navbar() {
               onClose={handleCloseNavMenu}
               sx={{ display: { xs: 'block', md: 'none' } }}
             >
-              {pages.map((page) => (
+              {(isLogedin?pagesAuth:pagesGuest).map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu} component={Link} to={`/${page}`}>
                   <Typography sx={{ textAlign: 'center' }}>{page}</Typography>
                 </MenuItem>
               ))}
             </Menu>
           </Box>
-          <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+          {/* <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} /> */}
+          <img className={style.logoImgsmall} src={kaLogo}></img>
           <Typography
             variant="h5"
             noWrap
@@ -116,19 +144,30 @@ function Navbar() {
             KA STORE
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
+            {(isLogedin?pagesAuth:pagesGuest).map((page) => (
               <Button
                 component={Link}
                 to={`/${page}`}
                 key={page}
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
+                sx={{ my: 2, color:"inherit", display: 'block' }}
               >
-                {page}
+                {page =='Cart'?`Cart (${cartItems})`:page}
               </Button>
             ))}
+            {
+              isLogedin?
+              <Button 
+              onClick={handleLogout}
+              sx={{ my: 2, color: 'inherit', display: 'block' }}
+              >Logout</Button>
+              :null
+            }
           </Box>
           <Box sx={{ flexGrow: 0 }}>
+            <IconButton onClick={toggleTheme}>
+              {mode=='light'? <DarkMode/> : <LightMode/>}
+            </IconButton>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />

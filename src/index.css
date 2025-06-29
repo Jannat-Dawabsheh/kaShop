@@ -2,4 +2,9 @@
 html{
   --secondaryColor:#312d5f;
   --mainColor:#4fc4ca;
+
+}
+
+body{
+  transition:  background-color 0.9s , color 0.9s;
 }
