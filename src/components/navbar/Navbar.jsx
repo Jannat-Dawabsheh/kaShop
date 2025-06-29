@@ -15,7 +15,7 @@ import AdbIcon from '@mui/icons-material/Adb';
 import { Link, useNavigate } from 'react-router';
 import kaLogo from '../../assets/darkLogo.png';
 import { CartContext } from '../../context/CartContext';
-import { ModeContext } from '../../context/modeContext';
+import { ModeContext } from '../../context/ModeContext';
 import { DarkMode, LightMode, Style } from '@mui/icons-material';
 import AxiosAuth from '../../api/AxiosAuth';
 import { QueryClient, useQuery, useQueryClient } from '@tanstack/react-query';
