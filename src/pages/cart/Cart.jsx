@@ -28,7 +28,8 @@ const queryClient=  useQueryClient();
     const {data,isLoading,isError,error,refetch}=useQuery({
       queryKey:['cartItems'],
       queryFn:fetchCart,
-      staleTime:1*60*60*1000,
+      staleTime:0,
+       refetchOnWindowFocus:true,
       retry:3
     });
 
@@ -121,7 +122,7 @@ const queryClient=  useQueryClient();
   }
 
 
-    if(isError)return <ErrorPage/>
+    if(isError){console.log(error); return <ErrorPage/>}
      if(isLoading)return <Loader/>
   if(data.cartResponse.length==0){
     return<>

@@ -31,7 +31,8 @@ export default function Product() {
     const {data,isLoading,isError,error}=useQuery({
       queryKey:['product',id],
       queryFn:fetchProduct,
-      staleTime:1*60*60*1000,
+      staleTime:5000,
+      refetchOnWindowFocus:true,
       retry:3
     });
 

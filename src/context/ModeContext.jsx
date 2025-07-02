@@ -15,7 +15,7 @@ const ModeContextProvider=({children})=>{
     <ThemeProvider theme={currentTheme}>
         <CssBaseline />
         {children}
-      </ThemeProvider>,
+      </ThemeProvider>
     
    </ModeContext.Provider>
 }

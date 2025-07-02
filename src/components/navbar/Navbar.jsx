@@ -25,24 +25,34 @@ const pagesAuth = ['Cart'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function Navbar() {
+    const isLogedin=Boolean(localStorage.getItem("userToken"));
+   
+
   // const {cartItems}=React.useContext(CartContext);
   const queryClient= useQueryClient();
   const fetchCartItems=async()=>{
-    const {data}=await AxiosAuth.get('Carts');
+     const {data}=await AxiosAuth.get('Carts');
     return data;
-  }
+    }
+
 
   useQuery({
     queryKey:['cartItems'],
     queryFn:fetchCartItems,
-    staleTime:5000,
+    staleTime:0,
+    refetchOnWindowFocus:true,
+    retry:3
   })
-  const data=queryClient.getQueryData(['cartItems']);
-  const cartItems=data?.cartResponse.length;
+
+   const data=queryClient.getQueryData(['cartItems']);
+   console.log(data);
+    const  cartItems=data?.cartResponse.length;
+
+  
   const {mode,toggleTheme}=React.useContext(ModeContext);
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-  const isLogedin=Boolean(localStorage.getItem("userToken"));
+
   const navigate=useNavigate();
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -60,6 +70,7 @@ function Navbar() {
   };
   const handleLogout=()=>{
     localStorage.removeItem("userToken");
+
     navigate('/login');
   }
 
