@@ -4,11 +4,12 @@ import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 import EmailIcon from '@mui/icons-material/Email';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import TwitterIcon from '@mui/icons-material/Twitter';
+import { Box } from '@mui/material';
 export default function Footer() {
   return (
-    <>
-    <div className={style.upperfooter}></div>
-    <div className={style.footerSection}>
+    <>  
+    <div className={style.upperfooter} ></div>
+    <Box className={style.footerSection} sx={{ zIndex: (theme) => theme.zIndex.drawer + 2 }}>
       <div className={style.row}>
         <p>Sunday to Thursday<br/>09 AM — 07 PM</p>
         <div className={style.iconsrow}>
@@ -22,7 +23,7 @@ export default function Footer() {
         </div>
         <p>KA Store © 2025 | All Rights Reserved</p>
       </div>
-    </div>
+    </Box>
     </>
   )
 }

@@ -7,7 +7,7 @@
 .footerSection{
     background-color: black;
     color: white;
-    position: fixed;
+    position: static;
     bottom: 0;
     left: 0;
     right: 0;
