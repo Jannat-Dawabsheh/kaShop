@@ -20,8 +20,11 @@ import { DarkMode, LightMode, Style } from '@mui/icons-material';
 import AxiosAuth from '../../api/AxiosAuth';
 import { QueryClient, useQuery, useQueryClient } from '@tanstack/react-query';
 import style from '../navbar/navbar.module.css'
-const pagesGuest = ['Register', 'Login'];
-const pagesAuth = ['Cart'];
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+const pagesGuest = ['Register', 'Login','Categories','Products','About us','Contact us'];
+const pagesAuth = ['Cart','Categories','Products','About','Contact'];
+const pagesGuestMenu = ['Register', 'Login','Categories','Products','About us','Contact us'];
+const pagesAuthMenu = ['Cart','Categories','Products','About','Contact','My profile', 'My order','change Password','logout'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function Navbar() {
@@ -56,18 +59,25 @@ function Navbar() {
   const navigate=useNavigate();
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
+ 
   };
   const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
+     setAnchorElUser(event.currentTarget);
+   
   };
 
   const handleCloseNavMenu = () => {
+    console.log('anchorElNav')
     setAnchorElNav(null);
   };
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+    const handleOpenProfile=()=>{
+    navigate('/profile/0');
+  }
+
   const handleLogout=()=>{
     localStorage.removeItem("userToken");
 
@@ -75,7 +85,7 @@ function Navbar() {
   }
 
   return (
-    <AppBar position="static">
+    <AppBar position="sticky" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
@@ -126,8 +136,8 @@ function Navbar() {
               onClose={handleCloseNavMenu}
               sx={{ display: { xs: 'block', md: 'none' } }}
             >
-              {(isLogedin?pagesAuth:pagesGuest).map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu} component={Link} to={`/${page}`}>
+              {(isLogedin?pagesAuthMenu:pagesGuestMenu).map((page,index) => (
+                <MenuItem key={page} onClick={()=>{if(page=='logout')handleLogout(); handleCloseNavMenu(); }} component={Link} to={page=='logout'?`/login`:page=='Cart'?`/${page}`:`/profile/${index-1}`}>
                   <Typography sx={{ textAlign: 'center' }}>{page}</Typography>
                 </MenuItem>
               ))}
@@ -154,7 +164,7 @@ function Navbar() {
           >
             KA STORE
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex', justifyContent:'center' } }}>
             {(isLogedin?pagesAuth:pagesGuest).map((page) => (
               <Button
                 component={Link}
@@ -166,23 +176,28 @@ function Navbar() {
                 {page =='Cart'?`Cart (${cartItems})`:page}
               </Button>
             ))}
-            {
+            {/* {
               isLogedin?
               <Button 
               onClick={handleLogout}
               sx={{ my: 2, color: 'inherit', display: 'block' }}
               >Logout</Button>
               :null
-            }
+            } */}
           </Box>
-          <Box sx={{ flexGrow: 0 }}>
+          <Box sx={{ flexGrow: 0 }} className={style.userBox} >
+            <Box className={style.profile}>
             <IconButton onClick={toggleTheme}>
               {mode=='light'? <DarkMode/> : <LightMode/>}
             </IconButton>
+            <AccountCircleIcon  onClick={handleOpenProfile} sx={{p:0, width:30 ,height:30}}/>
+            </Box>
+         
             <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+              {/* <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-              </IconButton>
+              </IconButton> */}
+            
             </Tooltip>
             <Menu
               sx={{ mt: '45px' }}

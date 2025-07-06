@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import style from '../products/products.module.css'
-import { Button, Card, CardActions, CardContent, CardMedia, Grid, Typography } from "@mui/material";
+import { Button, Card, CardActions, CardContent, CardMedia, createTheme, Grid, ThemeProvider, Typography } from "@mui/material";
 import { Link } from 'react-router';
 import Loader from "../../shared/Loader";
 import ErrorPage from "../../pages/errorPage/ErrorPage";
@@ -43,10 +43,13 @@ export default function Products(){
     // },[])
     
     return ( 
-    <Grid sx={{m:5}} container rowSpacing={4} columnSpacing={45} className={`${style.productSection}`}>
+      <>
+
+     
+    <Grid sx={{m:5}} container rowSpacing={4} columnSpacing={40} className={`${style.productSection}`}>
     {
     data.map((product) =>
-        <Grid item size={{ xs: 12, sm:4, md: 3 , lg:2, xl:2}} >
+        <Grid  item size={{ xs: 12, sm:4, md: 3 , lg:2, xl:2}} >
         <Card key={product.id} className={`${style.productDiv}`}>
             <CardMedia component={'img'} image={product.mainImg} className={`${style.productImg}`}  alt={product.description}>
 
@@ -74,5 +77,6 @@ export default function Products(){
 }
     
     </Grid>
+     </>
     )
 }

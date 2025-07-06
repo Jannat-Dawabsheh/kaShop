@@ -12,6 +12,13 @@ import ForgetStep3 from "./pages/forgetPassword/ForgetStep3";
 import Product from "./pages/product/Product";
 import Checkout from "./pages/checkout/Checkout";
 import ProtectedRouter from "./components/protectedRouter/ProtectedRouter";
+import CheckoutSuccess from "./pages/checkout/CheckoutSuccess";
+import Profile from "./pages/profile/Profile";
+import OrderDetails from "./pages/order/OrderDetails";
+import About from "./pages/about/About";
+import Contact from "./pages/contact/Contact";
+import Products from "./pages/products/Products";
+import Categories from "./pages/categories/Categories";
 const routes=createBrowserRouter([
     {
         path:'/',
@@ -57,6 +64,35 @@ const routes=createBrowserRouter([
             {
                 path:'/checkout',
                 element:<ProtectedRouter><Checkout/></ProtectedRouter>
+            },
+            {
+                path:'/checkoutSuccess',
+                element:<ProtectedRouter><CheckoutSuccess/></ProtectedRouter>
+            },
+             
+            {
+                path:'/profile/:index',
+                element:<ProtectedRouter><Profile/></ProtectedRouter>
+            },
+            {
+                path:'/orderDetails/:id',
+                element:<ProtectedRouter><OrderDetails/></ProtectedRouter>
+            },
+             {
+                path:'/About',
+                element:<About/>
+            },
+             {
+                path:'/Contact',
+                element:<Contact/>
+            },
+             {
+                path:'/Products',
+                element:<Products/>
+            },
+             {
+                path:'/Categories',
+                element:<Categories/>
             },
         ]
 

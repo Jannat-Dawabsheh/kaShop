@@ -29,10 +29,11 @@ export default function Category(){
     if(isLoading)return <Loader/>
     
     return ( 
-    <Grid sx={{m:5}} container spacing={4} className={`${style.categorySection}`}>
+    <Grid sx={{m:5}} container spacing={3} className={`${style.categorySection}`}>
     {
     data.map((category) =>
         <Grid item size={{ xs: 12, sm:4, md: 3 , lg:2, xl:2}} >
+       
         <div key={category.id} className={`${style.categoryDiv}`}>
             <Typography component={'div'} variant="h6">
               {category.name}

@@ -5,6 +5,7 @@ import style from '../checkout/checkout.module.css'
 import { Link ,useNavigate} from 'react-router';
 import Loader from '../../shared/Loader';
 import { toast, ToastContainer, Zoom } from 'react-toastify';
+import AxiosAuth from '../../api/AxiosAuth';
 
 export default function Checkout() {
     const [cart,setCart]=useState([]);
@@ -34,30 +35,27 @@ export default function Checkout() {
       }
 
       const handleCheckout=async()=>{
-        const userToken=localStorage.getItem('userToken')
-        const response= await axios.post(`${import.meta.env.VITE_BURL}CheckOuts/Pay`,
-            {
+          const response= await AxiosAuth.post(`CheckOuts/Pay`, {
               "PaymentMethod":paymentMethod
-            },
-            {
-                headers:{
-                    AUTHORIZATION:`Bearer ${userToken}`
-                }
-            }
-        );
+            },);
+       
         console.log(response); 
         if(response.status==200){
-            toast.success('Your payment done successfully', {
-            position: "top-right",
-            autoClose:2000,
-            hideProgressBar: false,
-            closeOnClick: false,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-            transition: Zoom,
-            });
+            // toast.success('Your payment done successfully', {
+            // position: "top-right",
+            // autoClose:2000,
+            // hideProgressBar: false,
+            // closeOnClick: false,
+            // pauseOnHover: true,
+            // draggable: true,
+            // progress: undefined,
+            // theme: "dark",
+            // transition: Zoom,
+            // });
+            
+            if(paymentMethod=="Cash"){
+            navigate('/checkoutSuccess')
+        }
 
             if(paymentMethod=="Visa"){
             location.href=response.data.url;

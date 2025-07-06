@@ -1,0 +1,40 @@
+
+.productDiv{
+    width: 80%;
+    display: flex;
+    justify-content: flex-start;
+    align-items:  flex-start;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+
+.description{
+    color: grey;
+}
+
+.row{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 5px;
+    width: 100%;
+
+}
+
+.panel{
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+@media only screen and (max-width: 600px) {
+  .productDiv{
+    width: 100%;
+
+}
+.row{
+    gap: 2px;
+
+}
+}

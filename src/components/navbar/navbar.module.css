@@ -5,11 +5,25 @@
 .logoImgsmall{
    display: none  
 }
+
+.profile{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.userBox{
+   display: block ;
+}
 @media only screen and (max-width: 900px) {
  .logoImg{
      display: none 
 }
 .logoImgsmall{
    display: flex  
+}
+
+.userBox{
+   display: none ;
 }
 }

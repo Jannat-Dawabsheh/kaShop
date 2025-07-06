@@ -1,0 +1,51 @@
+
+.productDiv{
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items:  center;
+    flex-direction: column;
+    margin: auto;
+    margin-top: 50px;
+    /* border: solid red 1px; */
+     /* box-shadow: 0px 4px 8px rgba(165, 74, 74, 0.1); */
+
+}
+
+
+.description{
+    color: grey;
+}
+
+.row{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 5px;
+    width: 100%;
+
+}
+
+.section{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 5px;
+    width: 100%;
+    /* background-color: aqua; */
+    flex-wrap: wrap;
+
+}
+
+.tableHead{
+    font-weight: bold;
+    padding: 2px;
+}
+
+.tableHeadRow{
+    background-color: aqua;
+}
+
+.details{
+    width: 300px;
+}
