@@ -76,7 +76,7 @@ export default function OrderDetails() {
 
               
                
-                 <TableContainer sx={{width:'100%', mt:5}} component={Paper}>
+                 <TableContainer sx={{width:'100%', mt:5}} style={{backgroundColor:'rgb(191, 241, 241)'}} component={Paper}>
                 <Table   aria-label="simple table">
                     <TableHead>
                     <TableRow >

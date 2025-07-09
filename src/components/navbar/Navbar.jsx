@@ -23,7 +23,7 @@ import style from '../navbar/navbar.module.css'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 const pagesGuest = ['Register', 'Login','Categories','Products','About us','Contact us'];
 const pagesAuth = ['Cart','Categories','Products','About','Contact'];
-const pagesGuestMenu = ['Register', 'Login','Categories','Products','About us','Contact us'];
+const pagesGuestMenu = ['register', 'Login','Categories','Products','About','Contact'];
 const pagesAuthMenu = ['Cart','Categories','Products','About','Contact','My profile', 'My order','change Password','logout'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
@@ -137,7 +137,7 @@ function Navbar() {
               sx={{ display: { xs: 'block', md: 'none' } }}
             >
               {(isLogedin?pagesAuthMenu:pagesGuestMenu).map((page,index) => (
-                <MenuItem key={page} onClick={()=>{if(page=='logout')handleLogout(); handleCloseNavMenu(); }} component={Link} to={page=='logout'?`/login`:page=='Cart'?`/${page}`:`/profile/${index-1}`}>
+                <MenuItem key={page} onClick={()=>{if(page=='logout')handleLogout(); handleCloseNavMenu(); }} component={Link} to={page=='logout'?`/login`:page=='Cart'?`/${page}`:page=='Categories'?`/${page}`:page=='Products'?`/${page}`:page=='About'?`/${page}`:page=='Contact'?`/${page}`:page=='register'?`/${page}`:`/profile/${index-5}`}>
                   <Typography sx={{ textAlign: 'center' }}>{page}</Typography>
                 </MenuItem>
               ))}

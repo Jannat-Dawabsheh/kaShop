@@ -7,6 +7,7 @@ import Loader from "../../shared/Loader";
 import ErrorPage from "../../pages/errorPage/ErrorPage";
 import AxiosNotAuth from "../../api/AxiosNotAuth";
 import { useQuery } from "@tanstack/react-query";
+import { Link } from "react-router";
 export default function Category(){
 
     // const {error,loader,data:categories}=useFetch('categories');
@@ -25,14 +26,16 @@ export default function Category(){
       retry:3
     });
 
+
+    
     if(isError)return <ErrorPage/>
     if(isLoading)return <Loader/>
     
     return ( 
-    <Grid sx={{m:5}} container spacing={3} className={`${style.categorySection}`}>
+    <Grid sx={{m:8}} container spacing={3} className={`${style.categorySection}`}>
     {
     data.map((category) =>
-        <Grid item size={{ xs: 12, sm:4, md: 3 , lg:2, xl:2}} >
+        <Grid item  xs={12} sm={4} md={3} lg={2} xl={2} >
        
         <div key={category.id} className={`${style.categoryDiv}`}>
             <Typography component={'div'} variant="h6">
@@ -40,7 +43,7 @@ export default function Category(){
             </Typography>
        
        
-            <Button size="small">Details</Button>
+            <Button size="small" component={Link} to={`/CategoryProducts/${category.name}/${category.id}`} >Details</Button>
         
 
        </div>

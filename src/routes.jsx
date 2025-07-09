@@ -19,6 +19,7 @@ import About from "./pages/about/About";
 import Contact from "./pages/contact/Contact";
 import Products from "./pages/products/Products";
 import Categories from "./pages/categories/Categories";
+import CategoryProducts from "./pages/categoryProducts/CategoryProducts";
 const routes=createBrowserRouter([
     {
         path:'/',
@@ -93,6 +94,10 @@ const routes=createBrowserRouter([
              {
                 path:'/Categories',
                 element:<Categories/>
+            },
+             {
+                path:'/CategoryProducts/:name/:id',
+                element:<CategoryProducts/>
             },
         ]
 

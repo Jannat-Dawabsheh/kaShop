@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import style from '../products/products.module.css'
-import { Button, Card, CardActions, CardContent, CardMedia, createTheme, Grid, ThemeProvider, Typography } from "@mui/material";
+import { Box, Button, Card, CardActions, CardContent, CardMedia, createTheme, Grid, Rating, ThemeProvider, Typography } from "@mui/material";
 import { Link } from 'react-router';
 import Loader from "../../shared/Loader";
 import ErrorPage from "../../pages/errorPage/ErrorPage";
@@ -15,8 +15,8 @@ export default function Products(){
   //     if(error)return <ErrorPage/>
    
       const fetchProducts=async()=>{
-        const {data}= await AxiosNotAuth.get(`products`);
-        return data;
+        const response= await AxiosNotAuth.get(`products?page=1&limit=4`);
+        return response.data;
     }
 
     const {data,isLoading,isError,error}=useQuery({
@@ -44,26 +44,34 @@ export default function Products(){
     
     return ( 
       <>
-
+       {console.log(data.data.data)}
+       <Box sx={{m:5}} className={`${style.row}`}>
+        <h3>our Products</h3>
+        <Button  style={{color:'primary'}} component={Link} to={'/Products'} >See all</Button>
+       </Box>
      
-    <Grid sx={{m:5}} container rowSpacing={4} columnSpacing={40} className={`${style.productSection}`}>
+    <Grid sx={{m:5}} container rowSpacing={4} columnSpacing={4} className={`${style.productSection}`}>
     {
-    data.map((product) =>
-        <Grid  item size={{ xs: 12, sm:4, md: 3 , lg:2, xl:2}} >
+    (data.data).map((product) =>
+        <Grid  item  xs={12} sm={4} md={3} lg={2} xl={2} >
         <Card key={product.id} className={`${style.productDiv}`}>
             <CardMedia component={'img'} image={product.mainImg} className={`${style.productImg}`}  alt={product.description}>
 
             </CardMedia>
-            <CardContent>
+            <CardContent sx={{width:'100%'}}>
             <Typography component={'div'} variant="h6">
               {product.name}
             </Typography>
             <p className={`${style.description}`}>
               {product.description}
             </p>
+            <div className={`${style.row}`}>
             <span className={`${style.price}`}>
               {product.price}$
             </span>
+             <Rating name="read-only" defaultValue={product.rate} precision={0.5}  readOnly />
+            </div>
+         
            </CardContent>
            <CardActions>
             <Button size="small" component={Link} to={`/product/${product.id}`}>Details</Button>
