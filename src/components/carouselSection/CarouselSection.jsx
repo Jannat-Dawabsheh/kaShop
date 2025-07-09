@@ -2,11 +2,8 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
-import img1 from '../../assets/img1.png';
-import img2 from '../../assets/img2.png';
-import img3 from '../../assets/img3.png';
 import speackers from '../../assets/speackers.png';
-import style from '../carouselSection/CarouselSection.module.css';
+import style from '../carouselSection/carouselSection.module.css'
 import { Button } from '@mui/material';
 export default function CarouselSection() {
   return (
