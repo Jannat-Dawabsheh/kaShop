@@ -6,7 +6,7 @@ import img1 from '../../assets/img1.png';
 import img2 from '../../assets/img2.png';
 import img3 from '../../assets/img3.png';
 import speackers from '../../assets/speackers.png';
-import style from '../carousel/CarouselSection.module.css';
+import style from '../carouselSection/CarouselSection.module.css';
 import { Button } from '@mui/material';
 export default function CarouselSection() {
   return (
